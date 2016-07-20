@@ -26,7 +26,6 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "Error: Bad command line parameters\n");
 		exit(1);
 	}
-  
 	int i = 0, j = 0, compare_index = 0;
 	// The second argument is not in "-#" format
 	if (argc == 3) {
@@ -40,24 +39,20 @@ int main(int argc, char** argv) {
 				exit(1);
 			}
 		}
-    
 		// Calculate which word should be used to do the sorting
 		compare_index = - atoi(argv[1]) - 1;
-	}
-  
+	}	
 	// The number in the second argument is 0
 	if (compare_index < 0) {
 		fprintf(stderr, "Error: Bad command line parameters\n");
 		exit(1);
 	}
-  
 	// Get the line number of file
 	FILE *in = fopen(argv[argc - 1], "r");
 	if (in == NULL) {
 		fprintf(stderr, "Error: Cannot open file %s\n", argv[argc - 1]);
 		exit(1);
 	}
-  
 	int line = 0;
 	char *buffer = malloc((MAXLEN + 1) * sizeof(char)), *sentence = NULL, *word = NULL;
 	while (fgets(buffer, MAXLEN + 1, in) != NULL) {
@@ -68,7 +63,6 @@ int main(int argc, char** argv) {
 		}
 		++line;
 	}
-  
 	fclose(in);
 	// Allocate memory for the array
 	struct word_str* sort_array = malloc(line * sizeof(struct word_str));
@@ -76,7 +70,6 @@ int main(int argc, char** argv) {
 		fprintf(stderr, "malloc failed\n");
 		exit(1);
 	}
-  
 	// Read the file and copy the sentences and words to be compared
 	in = fopen(argv[argc - 1], "r");
 	for (i = 0; i < line; ++i) {	
@@ -95,13 +88,11 @@ int main(int argc, char** argv) {
 				break;
 			}
 		}
-    
 		// Empty line
 		if (word == NULL) {
 			sort_array[i].word[0] = '\0';
 			continue;
 		}
-    
 		// Normal line
 		else {
 			strcpy(sort_array[i].word, word);
@@ -109,10 +100,8 @@ int main(int argc, char** argv) {
 	}
 	fclose(in);
 	free(buffer);
-  
 	// Sort
 	qsort(sort_array, line, sizeof(struct word_str), str_compare);
-  
 	// Print
 	for (i = 0; i < line; ++i) {
 		printf("%s", sort_array[i].sentence);
