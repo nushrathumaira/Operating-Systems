@@ -1,4 +1,4 @@
-#Fast sort
+1a. Fast sort
 In the fast sort program, I added a new struct including the line content and the word to be compared, so that we could directly sort the array according to the word, and print the result using line content. 
 First, check if the arguments are legal. Then, go through the file one time to count the line number, and read the file again to copy the line content and one of the word that is identified by the parameter (or the first word). Next, use the built-in qsort() function to sort the array. Finally, print the output according to the sorting result.
 
