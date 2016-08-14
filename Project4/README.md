@@ -1,8 +1,9 @@
 #Web Crawler
 
-To use the web and file fetchers, run these commands:
-
+To use the web fetchers, run:
 `./file_tester pagea`
+
+To run the file fetchers, run:
 `./web_tester index.txt`
 
 1. We created two groups of threads, one for downloaders and one for parsers. The downloaders will get a link from the link queue, fetch the page, and put it into page queue accordingly. The parsers will parse the page from the page queue, find the link in the page, and put the links into the link queue accordingly. 
