@@ -1,7 +1,9 @@
 #The Unix Shell
 
 To run the program:
+
 1. `gcc -O -Wall -o whoosh whoosh.c`.
+
 2. `./whoosh`.
 
 A simple Unix-style shell program which support some basic built-in commands and could execute non-built-in commands.
