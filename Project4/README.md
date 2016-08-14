@@ -2,8 +2,8 @@
 
 To use the web and file fetchers, run these commands:
 
-./file_tester pagea
-./web_tester index.txt
+`./file_tester pagea`
+`./web_tester index.txt`
 
 1. We created two groups of threads, one for downloaders and one for parsers. The downloaders will get a link from the link queue, fetch the page, and put it into page queue accordingly. The parsers will parse the page from the page queue, find the link in the page, and put the links into the link queue accordingly. 
 
@@ -13,17 +13,6 @@ To use the web and file fetchers, run these commands:
 
 4. We use a hashset to check if the page has already been visited. If a page has not been visited, parse the page and add the current page to the hashset. If it has already been visited, skip the parsing procedure. The reference of our hash function is https://en.wikipedia.org/wiki/Fletcher%27s_checksum  (the fletcher32 one).
 
-5. Whenever a link is found, use the edge() function to let the calling function know the link.
+5. Whenever a link is found, use the `edge()` function to let the calling function know the link.
 
 6. We created another thread as a terminator, which keeps check if there is any item in the queue or being parsed/fetched. When there is no item in the whole program, the terminator will stop all the downloaders/parsers (all of them should be asleep), and then finish the main thread.
-
-Project 4b
-1. We created clone() function, where we could create a new thread which shares the same address space with its parent (the address space size will also be shared). Also, we created join() function to make the parent thread wait for the child thread. 
-
-2. We made some adjustments to the wait() function. The wait() function will check the address space and only wait for the child process which has different pgdir, while join() function will wait for child thread that has the same address space.
-
-3. We added the reference check to the process, so that wait() could only free the address space only when it is the last reference to it. 
-
-4. We created a thread library that supports thread_create(), thread_join() and spin lock. The thread_create() method will create a page-aligned stack and use clone() to create the thread. The thread_join() will use join() to join with the child thread, and free the user stack correspondingly. 
-
-5. The spin lock has three methods: lock_init(), lock_acquire() and lock_release(). The lock_acquire() will use xchg() in order to do the lock status checking and lock acquiring in the same time. 
